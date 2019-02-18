@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Demo10.Models;
+using Demo10.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +12,13 @@ namespace Demo10.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (IDal dal = new Dal())
+            {
+                List<Resto> listeDesRestaurants = dal.ObtienTousLesRestaurants();
+                return View(listeDesRestaurants);
+            }
+
+           
         }
 
         public ActionResult About()
